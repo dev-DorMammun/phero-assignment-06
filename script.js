@@ -21,9 +21,12 @@ function displayCategories(categoriesArray) {
 }
 
 function loadCategoryData(id) {
+  loadingSpinner(true);
+
   fetch(`https://openapi.programming-hero.com/api/category/${id}`)
     .then((response) => response.json())
     .then((data) => {
+      loadingSpinner(data);
       displayCategoryData(data.plants);
     });
 
@@ -35,9 +38,12 @@ function loadCategoryData(id) {
 }
 
 function loadAllPlantData() {
+  loadingSpinner(true);
+
   fetch("https://openapi.programming-hero.com/api/plants")
     .then((response) => response.json())
     .then((data) => {
+      loadingSpinner(data);
       displayCategoryData(data.plants);
     });
 
@@ -47,6 +53,8 @@ function loadAllPlantData() {
   });
   select("categoryBtn0").classList.add("active");
 }
+
+loadAllPlantData();
 
 function displayCategoryData(dataArray) {
   select("cardContainer").innerHTML = "";
@@ -78,6 +86,8 @@ function displayCategoryData(dataArray) {
     `;
 
     select("cardContainer").appendChild(newCard);
+
+    loadingSpinner(false);
   });
 }
 
@@ -137,6 +147,16 @@ function crossBtnFunctionality(plant) {
   price =
     price - plant.price * Number(select(`itemCount${plant.id}`).innerText);
   select("displayPrice").innerText = price;
+}
+
+function loadingSpinner(status) {
+  if (status == true) {
+    select("loadingSpinner").classList.remove("hidden");
+    select("cardContainer").classList.add("hidden");
+  } else {
+    select("loadingSpinner").classList.add("hidden");
+    select("cardContainer").classList.remove("hidden");
+  }
 }
 
 loadAllCategories();
