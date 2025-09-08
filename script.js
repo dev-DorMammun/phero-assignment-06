@@ -140,11 +140,13 @@ function crossBtn(id) {
 }
 
 function crossBtnFunctionality(plant) {
-  select(`cartItem${plant.id}`).classList.add("hidden");
-
   price =
     price - plant.price * Number(select(`itemCount${plant.id}`).innerText);
   select("displayPrice").innerText = price;
+
+  select(`cartItem${plant.id}`).parentNode.removeChild(
+    select(`cartItem${plant.id}`)
+  );
 }
 
 function loadingSpinner(status) {
