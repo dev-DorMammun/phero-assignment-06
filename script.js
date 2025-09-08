@@ -54,8 +54,6 @@ function loadAllPlantData() {
   select("categoryBtn0").classList.add("active");
 }
 
-loadAllPlantData();
-
 function displayCategoryData(dataArray) {
   select("cardContainer").innerHTML = "";
   dataArray.forEach((plant) => {
@@ -160,3 +158,4 @@ function loadingSpinner(status) {
 }
 
 loadAllCategories();
+loadAllPlantData();
