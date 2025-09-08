@@ -61,7 +61,7 @@ function displayCategoryData(dataArray) {
     newCard.innerHTML = `
         <div class="bg-white p-4 shadow-sm rounded-md h-full flex flex-col justify-between gap-3 items-center">
             <div class="space-y-3">
-                <img src="${plant.image}" class="w-full rounded-sm ">
+                <img src="${plant.image}" class="w-full rounded-sm">
                 <div class="font-bold">${plant.name}</div>
                 <div class="text-[#1f2937]">
                     ${plant.description}
@@ -84,9 +84,8 @@ function displayCategoryData(dataArray) {
     `;
 
     select("cardContainer").appendChild(newCard);
-
-    loadingSpinner(false);
   });
+  loadingSpinner(false);
 }
 
 let price = 0;
